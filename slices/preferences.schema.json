@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://life.omni.dev/slices/preferences.schema.json",
+  "title": "Preferences Slice",
+  "description": "App and communication preferences",
+  "type": "object",
+  "properties": {
+    "language": {
+      "type": "string",
+      "pattern": "^[a-z]{2}$",
+      "description": "Preferred language (ISO 639-1)"
+    },
+    "theme": {
+      "type": "string",
+      "enum": ["light", "dark", "system"],
+      "description": "UI theme preference"
+    },
+    "communication": {
+      "type": "object",
+      "properties": {
+        "style": {
+          "type": "string",
+          "enum": ["concise", "detailed", "casual", "formal"],
+          "description": "Preferred communication style"
+        },
+        "channels": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["email", "sms", "push", "discord", "slack"]
+          },
+          "description": "Preferred notification channels (ordered by preference)"
+        },
+        "quietHours": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "start": { "type": "string", "pattern": "^\\d{2}:\\d{2}$" },
+            "end": { "type": "string", "pattern": "^\\d{2}:\\d{2}$" }
+          },
+          "description": "Do not disturb schedule (local time)"
+        }
+      }
+    },
+    "accessibility": {
+      "type": "object",
+      "properties": {
+        "reduceMotion": { "type": "boolean" },
+        "highContrast": { "type": "boolean" },
+        "screenReader": { "type": "boolean" },
+        "fontSize": {
+          "type": "string",
+          "enum": ["small", "medium", "large", "xlarge"]
+        }
+      },
+      "description": "Accessibility preferences"
+    },
+    "privacy": {
+      "type": "object",
+      "properties": {
+        "analyticsOptOut": { "type": "boolean" },
+        "publicProfile": { "type": "boolean" },
+        "showOnlineStatus": { "type": "boolean" }
+      },
+      "description": "Privacy preferences"
+    },
+    "units": {
+      "type": "object",
+      "properties": {
+        "temperature": { "type": "string", "enum": ["celsius", "fahrenheit"] },
+        "distance": { "type": "string", "enum": ["metric", "imperial"] },
+        "dateFormat": { "type": "string", "enum": ["MDY", "DMY", "YMD"] },
+        "timeFormat": { "type": "string", "enum": ["12h", "24h"] }
+      },
+      "description": "Unit and format preferences"
+    }
+  },
+  "additionalProperties": false
+}

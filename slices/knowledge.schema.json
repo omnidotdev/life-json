@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://life.omni.dev/slices/knowledge.schema.json",
+  "title": "Knowledge Slice",
+  "description": "References to knowledge bases and notes (not the content)",
+  "type": "object",
+  "properties": {
+    "vaults": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/knowledgeVault"
+      },
+      "description": "Connected knowledge vaults/bases"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Top-level tags/topics across all vaults"
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "noteCount": { "type": "integer" },
+        "connectionCount": { "type": "integer" },
+        "lastUpdated": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "$defs": {
+    "knowledgeVault": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "provider": {
+          "type": "string",
+          "description": "e.g., 'trellis', 'obsidian', 'notion', 'roam'"
+        },
+        "syncUrl": { "type": "string", "format": "uri" },
+        "exportUrl": { "type": "string", "format": "uri" },
+        "isPublic": { "type": "boolean" },
+        "topics": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Main topics in this vault"
+        }
+      },
+      "required": ["provider"]
+    }
+  }
+}

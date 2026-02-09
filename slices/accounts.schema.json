@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://life.omni.dev/slices/accounts.schema.json",
+  "title": "Accounts Slice",
+  "description": "References to connected accounts and platforms (not credentials)",
+  "type": "object",
+  "properties": {
+    "platforms": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/platformAccount"
+      },
+      "description": "Connected platform accounts"
+    },
+    "omni": {
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "organizations": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "description": "Omni ecosystem account reference"
+    }
+  },
+  "$defs": {
+    "platformAccount": {
+      "type": "object",
+      "properties": {
+        "platform": {
+          "type": "string",
+          "description": "Platform identifier (e.g., 'github', 'discord', 'google')"
+        },
+        "username": {
+          "type": "string",
+          "description": "Username or handle on this platform"
+        },
+        "profileUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to public profile"
+        },
+        "connectedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "scopes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Granted permission scopes (for reference, not auth)"
+        },
+        "exportUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to export/download data from this platform"
+        },
+        "isPrimary": {
+          "type": "boolean",
+          "description": "Primary account for this platform"
+        }
+      },
+      "required": ["platform"]
+    }
+  }
+}

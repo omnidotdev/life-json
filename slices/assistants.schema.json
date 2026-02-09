@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://life.omni.dev/slices/assistants.schema.json",
+  "title": "Assistants Slice",
+  "description": "AI assistant learned context and preferences",
+  "type": "object",
+  "additionalProperties": {
+    "$ref": "#/$defs/assistant"
+  },
+  "$defs": {
+    "assistant": {
+      "type": "object",
+      "description": "Per-assistant learned context (keyed by assistant ID, e.g., 'orin')",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether this assistant is active"
+        },
+        "learnedFacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "fact": { "type": "string" },
+              "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+              "source": { "type": "string", "enum": ["explicit", "inferred", "corrected"] },
+              "learnedAt": { "type": "string", "format": "date-time" }
+            },
+            "required": ["fact"]
+          },
+          "description": "Facts learned about the user"
+        },
+        "preferences": {
+          "type": "object",
+          "properties": {
+            "verbosity": {
+              "type": "string",
+              "enum": ["minimal", "normal", "detailed"],
+              "description": "Response length preference"
+            },
+            "tone": {
+              "type": "string",
+              "enum": ["professional", "friendly", "playful"],
+              "description": "Conversation tone"
+            },
+            "expertise": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "User's areas of expertise (assistant can assume knowledge)"
+            },
+            "avoidTopics": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Topics the user prefers to avoid"
+            }
+          },
+          "description": "Per-assistant interaction preferences"
+        },
+        "context": {
+          "type": "object",
+          "properties": {
+            "currentProjects": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Active projects the assistant should know about"
+            },
+            "goals": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Current goals or objectives"
+            },
+            "notes": {
+              "type": "string",
+              "description": "Free-form notes for the assistant"
+            }
+          },
+          "description": "Contextual information for the assistant"
+        },
+        "permissions": {
+          "type": "object",
+          "properties": {
+            "canLearn": {
+              "type": "boolean",
+              "default": true,
+              "description": "Whether the assistant can learn new facts"
+            },
+            "canAccessCalendar": { "type": "boolean" },
+            "canAccessContacts": { "type": "boolean" },
+            "canAccessFiles": { "type": "boolean" },
+            "canExecuteCode": { "type": "boolean" },
+            "canBrowseWeb": { "type": "boolean" }
+          },
+          "description": "Per-assistant permission grants"
+        },
+        "stats": {
+          "type": "object",
+          "properties": {
+            "conversationCount": { "type": "integer" },
+            "firstInteraction": { "type": "string", "format": "date-time" },
+            "lastInteraction": { "type": "string", "format": "date-time" }
+          },
+          "description": "Interaction statistics"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

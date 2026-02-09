@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://life.omni.dev/slices/memories.schema.json",
+  "title": "Memories Slice",
+  "description": "References to memories and media (not the media itself)",
+  "type": "object",
+  "properties": {
+    "source": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "type": "string",
+          "description": "e.g., 'moment', 'google-photos', 'apple-photos'"
+        },
+        "userId": { "type": "string" },
+        "apiUrl": { "type": "string", "format": "uri" },
+        "exportUrl": { "type": "string", "format": "uri" },
+        "lastSync": { "type": "string", "format": "date-time" }
+      },
+      "description": "Where full memories data lives"
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "photoCount": { "type": "integer" },
+        "videoCount": { "type": "integer" },
+        "momentCount": { "type": "integer" },
+        "oldestMemory": { "type": "string", "format": "date" },
+        "newestMemory": { "type": "string", "format": "date" }
+      },
+      "description": "Summary statistics (not actual media)"
+    },
+    "highlights": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "date": { "type": "string", "format": "date" },
+          "thumbnailUrl": { "type": "string", "format": "uri" },
+          "deepLink": { "type": "string", "format": "uri" }
+        }
+      },
+      "description": "Featured memories (references only)"
+    },
+    "importantDates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": { "type": "string" },
+          "date": { "type": "string", "format": "date" },
+          "recurring": { "type": "boolean" }
+        }
+      },
+      "description": "Anniversaries, birthdays to remember"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://life.omni.dev/life.schema.json",
+  "title": "life.json",
+  "description": "Portable digital identity specification",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Schema URL for validation"
+    },
+    "identity": {
+      "$ref": "slices/identity.schema.json",
+      "description": "Core identity (actual data, portable)"
+    },
+    "preferences": {
+      "$ref": "slices/preferences.schema.json",
+      "description": "App and communication preferences (actual data)"
+    },
+    "assistants": {
+      "$ref": "slices/assistants.schema.json",
+      "description": "AI assistant learned context (actual data)"
+    },
+    "accounts": {
+      "$ref": "slices/accounts.schema.json",
+      "description": "Connected platform accounts (references)"
+    },
+    "social": {
+      "$ref": "slices/social.schema.json",
+      "description": "Social presence and profiles (references)"
+    },
+    "relationships": {
+      "$ref": "slices/relationships.schema.json",
+      "description": "Key people and connections (references)"
+    },
+    "calendar": {
+      "$ref": "slices/calendar.schema.json",
+      "description": "Calendar references and scheduling preferences"
+    },
+    "memories": {
+      "$ref": "slices/memories.schema.json",
+      "description": "References to memories and media"
+    },
+    "knowledge": {
+      "$ref": "slices/knowledge.schema.json",
+      "description": "References to knowledge bases and notes"
+    },
+    "finances": {
+      "$ref": "slices/finances.schema.json",
+      "description": "References to financial accounts and preferences"
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

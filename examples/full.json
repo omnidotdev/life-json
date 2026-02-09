@@ -1,0 +1,176 @@
+{
+  "$schema": "https://life.omni.dev/life.schema.json",
+
+  "identity": {
+    "name": "Brian",
+    "timezone": "America/Los_Angeles",
+    "locale": "en-US",
+    "pronouns": "he/him",
+    "occupation": "Software Engineer",
+    "location": {
+      "city": "San Francisco",
+      "region": "California",
+      "country": "US"
+    }
+  },
+
+  "preferences": {
+    "language": "en",
+    "theme": "dark",
+    "communication": {
+      "style": "concise",
+      "channels": ["discord", "email"]
+    },
+    "units": {
+      "temperature": "fahrenheit",
+      "timeFormat": "12h"
+    }
+  },
+
+  "assistants": {
+    "orin": {
+      "enabled": true,
+      "learnedFacts": [
+        {
+          "fact": "Prefers Rust for systems programming",
+          "confidence": 0.9,
+          "source": "explicit"
+        }
+      ],
+      "preferences": {
+        "verbosity": "minimal",
+        "tone": "friendly",
+        "expertise": ["rust", "typescript", "distributed-systems"]
+      },
+      "permissions": {
+        "canLearn": true,
+        "canAccessCalendar": true,
+        "canBrowseWeb": true
+      }
+    }
+  },
+
+  "accounts": {
+    "platforms": [
+      {
+        "platform": "github",
+        "username": "omnidotdev",
+        "profileUrl": "https://github.com/omnidotdev",
+        "isPrimary": true
+      },
+      {
+        "platform": "discord",
+        "username": "brian#1234",
+        "isPrimary": true
+      }
+    ],
+    "omni": {
+      "userId": "user_abc123",
+      "organizations": ["org_omni"]
+    }
+  },
+
+  "social": {
+    "primaryProfile": "https://blink.omni.dev/brian",
+    "profiles": [
+      {
+        "platform": "blink",
+        "username": "brian",
+        "url": "https://blink.omni.dev/brian",
+        "isPrimary": true,
+        "displayInTree": true
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/omnidotdev",
+        "displayInTree": true
+      }
+    ]
+  },
+
+  "relationships": {
+    "source": {
+      "provider": "moment",
+      "syncUrl": "https://moment.omni.dev/api/relationships",
+      "lastSync": "2026-01-28T00:00:00Z"
+    },
+    "people": [
+      {
+        "id": "person_1",
+        "name": "Alice",
+        "relationship": "colleague",
+        "isEmergencyContact": false
+      }
+    ]
+  },
+
+  "calendar": {
+    "calendars": [
+      {
+        "provider": "google",
+        "name": "Personal",
+        "isPrimary": true
+      },
+      {
+        "provider": "google",
+        "name": "Work",
+        "isWork": true
+      }
+    ],
+    "scheduling": {
+      "workingHours": {
+        "start": "09:00",
+        "end": "17:00",
+        "days": ["mon", "tue", "wed", "thu", "fri"]
+      },
+      "meetingPreferences": {
+        "defaultDuration": 30,
+        "bufferBetween": 15
+      }
+    }
+  },
+
+  "memories": {
+    "source": {
+      "provider": "moment",
+      "exportUrl": "https://moment.omni.dev/export",
+      "lastSync": "2026-01-28T00:00:00Z"
+    },
+    "stats": {
+      "photoCount": 15420,
+      "momentCount": 342
+    }
+  },
+
+  "knowledge": {
+    "vaults": [
+      {
+        "id": "vault_main",
+        "name": "Brain",
+        "provider": "trellis",
+        "exportUrl": "https://trellis.omni.dev/export/vault_main",
+        "topics": ["engineering", "projects", "ideas"]
+      }
+    ]
+  },
+
+  "finances": {
+    "source": {
+      "provider": "myfi",
+      "dashboardUrl": "https://myfi.omni.dev/dashboard",
+      "exportUrl": "https://myfi.omni.dev/export"
+    },
+    "preferences": {
+      "currency": "USD"
+    },
+    "accountRefs": [
+      {
+        "name": "Primary Checking",
+        "type": "checking",
+        "institution": "Bank of America",
+        "lastFour": "1234",
+        "isPrimary": true
+      }
+    ]
+  }
+}

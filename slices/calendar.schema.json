@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://life.omni.dev/slices/calendar.schema.json",
+  "title": "Calendar Slice",
+  "description": "References to calendars and scheduling preferences (not events)",
+  "type": "object",
+  "properties": {
+    "calendars": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/calendarRef"
+      },
+      "description": "Connected calendar references"
+    },
+    "scheduling": {
+      "type": "object",
+      "properties": {
+        "workingHours": {
+          "type": "object",
+          "properties": {
+            "start": { "type": "string", "pattern": "^\\d{2}:\\d{2}$" },
+            "end": { "type": "string", "pattern": "^\\d{2}:\\d{2}$" },
+            "days": {
+              "type": "array",
+              "items": { "type": "string", "enum": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] }
+            }
+          }
+        },
+        "meetingPreferences": {
+          "type": "object",
+          "properties": {
+            "defaultDuration": { "type": "integer", "description": "Minutes" },
+            "bufferBetween": { "type": "integer", "description": "Minutes between meetings" },
+            "preferredTimes": {
+              "type": "array",
+              "items": { "type": "string", "enum": ["morning", "afternoon", "evening"] }
+            }
+          }
+        },
+        "bookingUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "Calendly/Cal.com style booking link"
+        }
+      },
+      "description": "Scheduling preferences"
+    }
+  },
+  "$defs": {
+    "calendarRef": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "provider": {
+          "type": "string",
+          "description": "e.g., 'google', 'outlook', 'apple', 'caldav'"
+        },
+        "isPrimary": { "type": "boolean" },
+        "isWork": { "type": "boolean" },
+        "syncUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "CalDAV or API endpoint (not credentials)"
+        },
+        "color": { "type": "string" }
+      },
+      "required": ["provider"]
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://life.omni.dev/slices/social.schema.json",
+  "title": "Social Slice",
+  "description": "Social presence and profile references",
+  "type": "object",
+  "properties": {
+    "profiles": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/socialProfile"
+      },
+      "description": "Social media and web presence profiles"
+    },
+    "primaryProfile": {
+      "type": "string",
+      "format": "uri",
+      "description": "Primary public profile URL (e.g., Blink tree)"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": { "type": "string" },
+          "url": { "type": "string", "format": "uri" },
+          "icon": { "type": "string" }
+        }
+      },
+      "description": "Curated links for public display"
+    }
+  },
+  "$defs": {
+    "socialProfile": {
+      "type": "object",
+      "properties": {
+        "platform": {
+          "type": "string",
+          "description": "e.g., 'twitter', 'linkedin', 'github', 'blink'"
+        },
+        "username": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "isPublic": { "type": "boolean", "default": true },
+        "isPrimary": { "type": "boolean" },
+        "displayInTree": {
+          "type": "boolean",
+          "description": "Show in link-in-bio style profiles"
+        }
+      },
+      "required": ["platform", "url"]
+    }
+  }
+}

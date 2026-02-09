@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://life.omni.dev/slices/relationships.schema.json",
+  "title": "Relationships Slice",
+  "description": "References to people and connections (not full social graph)",
+  "type": "object",
+  "properties": {
+    "people": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/person"
+      },
+      "description": "Key people in your life"
+    },
+    "groups": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/group"
+      },
+      "description": "Groups or circles"
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "provider": { "type": "string", "description": "e.g., 'moment', 'contacts'" },
+        "syncUrl": { "type": "string", "format": "uri" },
+        "lastSync": { "type": "string", "format": "date-time" }
+      },
+      "description": "Where full relationship data lives"
+    }
+  },
+  "$defs": {
+    "person": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "relationship": {
+          "type": "string",
+          "description": "e.g., 'spouse', 'friend', 'colleague', 'family'"
+        },
+        "contactMethods": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string", "enum": ["email", "phone", "discord", "slack"] },
+              "value": { "type": "string" },
+              "isPrimary": { "type": "boolean" }
+            }
+          }
+        },
+        "isEmergencyContact": { "type": "boolean" },
+        "notes": { "type": "string", "maxLength": 200 }
+      },
+      "required": ["name"]
+    },
+    "group": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "memberIds": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

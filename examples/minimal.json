@@ -1,0 +1,7 @@
+{
+  "$schema": "https://life.omni.dev/life.schema.json",
+  "identity": {
+    "name": "Brian",
+    "timezone": "America/Los_Angeles"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://life.omni.dev/slices/identity.schema.json",
+  "title": "Identity Slice",
+  "description": "Core identity information",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Preferred name (how you want to be addressed)"
+    },
+    "fullName": {
+      "type": "string",
+      "description": "Full legal name"
+    },
+    "nickname": {
+      "type": "string",
+      "description": "Casual nickname"
+    },
+    "pronouns": {
+      "type": "string",
+      "description": "Preferred pronouns (e.g., 'he/him', 'she/her', 'they/them')"
+    },
+    "timezone": {
+      "type": "string",
+      "description": "IANA timezone (e.g., 'America/Los_Angeles')"
+    },
+    "locale": {
+      "type": "string",
+      "pattern": "^[a-z]{2}(-[A-Z]{2})?$",
+      "description": "BCP 47 locale code (e.g., 'en-US')"
+    },
+    "birthday": {
+      "type": "string",
+      "format": "date",
+      "description": "Birth date (ISO 8601)"
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "city": { "type": "string" },
+        "region": { "type": "string", "description": "State/province" },
+        "country": { "type": "string", "description": "ISO 3166-1 alpha-2 code" }
+      },
+      "description": "Current location (general, not precise)"
+    },
+    "bio": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Short biography"
+    },
+    "occupation": {
+      "type": "string",
+      "description": "Current occupation or role"
+    }
+  },
+  "additionalProperties": false
+}
